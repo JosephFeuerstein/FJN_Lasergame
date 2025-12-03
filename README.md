@@ -1,5 +1,5 @@
 # FJN_Lasergame
-A game i programmed for my FJN. You shoot a laser on a Monitor, this laser is detected by a camera (in my case a Openmv Cam H7)
+This game was programmed for my FJN as Entertainment for various events
 
 
 ## --- Setup ---
