@@ -2,8 +2,8 @@
 A game i programmed for my FJN. You shoot a laser on a Monitor, this laser is detected by a camera (in my case a Openmv Cam H7)
 
 
-# --- Setup ---
-List of Materials
+## --- Setup ---
+### List of Materials
 
 OpenMV Cam (code made for model H7)
 
@@ -16,8 +16,7 @@ Laser gun
 
 PC or Laptop
 
-
-# --Software Setup--
+## --Software Setup--
 
 Copy dect.py, calib.py, main.py, as well as protocol.txt and coords.txt onto the camera.
 
@@ -28,10 +27,10 @@ For a more in-depth explanation of the commands, use the help command.
 Make sure your paths to the text files are correct
 (you can change them with the path command).
 
-# --Display Requirements--
+## --Display Requirements--
 
 The game is programmed for a 4:3 resolution (1600×1200).
-(This may need to be changed for your setup.)
+(This may need to be changed depending on your setup.)
 
 ## --Initial Setup--
 
@@ -45,7 +44,7 @@ Run the calibration command.
 
 Choose your game mode (default is Mode 1).
 
-# --Different Game Modes--
+## --Different Game Modes--
 
 Easy – static target
 
@@ -53,6 +52,6 @@ Medium – target hides + moves
 
 Hard – timed target appearances with automatic movement
 
-# --Start the Game--
+## --Start the Game--
 
 Use the start command and enjoy!
