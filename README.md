@@ -5,16 +5,16 @@ A game i programmed for my FJN. You shoot a laser on a Monitor, this laser is de
 ## --- Setup ---
 ### List of Materials
 
-OpenMV Cam (code made for model H7)
+- OpenMV Cam (code made for model H7)
 
-USB cable (for the camera)
+- USB cable (for the camera)
 
-Monitor with projection foil (for better detection of the laser)
-(Alternatively, you may be able to use a beamer, but this has not been tested yet)
+- Monitor with projection foil (for better detection of the laser)
+  (Alternatively, you may be able to use a beamer, but this has not been tested yet)
 
-Laser gun
+- Laser gun
 
-PC or Laptop
+- PC or Laptop
 
 ## --Software Setup--
 
