@@ -1,23 +1,23 @@
 from machine import LED
 import sensor, image, time, os, math
 
-print("START CALIB")
-# ---------------- CONFIG ----------------
+
+# CONFIG 
+
 thresholdblack = [(50, 100, -70, -10, 0, 50)]  # adjust as needed
 leds = LED("LED_GREEN")
-leds.on
+leds.on()
 # Camera setup
 sensor.reset()
+time.sleep_ms(200)
 
 sensor.set_pixformat(sensor.RGB565)
-#print("test")
 sensor.set_framesize(sensor.QVGA)
-#print("test")
-sensor.skip_frames(time=2000)
+sensor.skip_frames(time=3000)
+time.sleep_ms(500)
 sensor.set_auto_whitebal(False)
-#print("test")
-
-
+sensor.set_auto_gain(False)
+sensor.set_auto_exposure(False)
 
 posx = []
 posy = []
@@ -35,7 +35,9 @@ for _ in range(10):
         print("Warm-up snapshot failed:", e)
         time.sleep_ms(100)
 
-# ---------------- CALIBRATION LOOP ----------------
+
+#  CALIBRATION LOOP
+
 start_time = time.ticks_ms()
 
 while time.ticks_diff(time.ticks_ms(), start_time) < 5000:
@@ -61,17 +63,19 @@ while time.ticks_diff(time.ticks_ms(), start_time) < 5000:
     time.sleep_ms(100)
 
 
-# ---------------- POST-PROCESSING ----------------
+#  POST-PROCESSING
+
 if not blobs_data:
+    print("No valid blobs detected during calibration")
     raise ValueError("No valid blobs detected during calibration.")
 
-# --- Distance helper ---
+# Distance helper 
 def distance(p1, p2):
     return math.sqrt((p1[0]-p2[0])**2 + (p1[1]-p2[1])**2)
 
 clusters = []
 
-# --- Cluster blobs across frames ---
+# Cluster blobs across frames 
 for frame in blobs_data:
     for blob in frame:
         found_cluster = False
@@ -83,7 +87,7 @@ for frame in blobs_data:
         if not found_cluster:
             clusters.append([blob])  # new blob
 
-# --- Average position per cluster ---
+# Average position per cluster 
 averaged_points = []
 for cluster in clusters:
     xs = [p[0] for p in cluster]
@@ -92,12 +96,14 @@ for cluster in clusters:
     avg_y = int(round(sum(ys) / len(ys))/2)
     averaged_points.append((avg_x, avg_y))
 
-# --- Sort blobs by position for consistency (top row then bottom row) ---
+# Sort blobs by position for consistency (top row then bottom row) 
 averaged_points = sorted(averaged_points, key=lambda p: (p[1], p[0]))  # sort by y then x
 if len(averaged_points) > 6:
     averaged_points = averaged_points[:6]  # only keep 6 most consistent blobs
 
-# ---------------- SAVE RESULTS ----------------
+
+# SAVE RESULTS
+
 print("\nAveraged Blob Coordinates:")
 for i, (x, y) in enumerate(averaged_points):
     print(f"Blob {i+1}: X={x}, Y={y}")

@@ -1,1 +1,8 @@
-ROI: (39, 11, 98, 67)
+ROI: (32, 28, 107, 74)
+Averaged Points:
+Blob 1: X=87, Y=28
+Blob 2: X=32, Y=29
+Blob 3: X=139, Y=30
+Blob 4: X=139, Y=98
+Blob 5: X=34, Y=101
+Blob 6: X=88, Y=102

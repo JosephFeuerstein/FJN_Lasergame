@@ -1,15 +1,14 @@
 import pyb
 from machine import LED
-#print("test")
 proto_path = "protocol.txt"
 coords_path = "coords.txt"
-led_pin = pyb.Pin('P7', pyb.Pin.OUT_PP)
 with open(proto_path, "a") as proto_file:
     proto_file.write("\ntest" )
 last_line_count=0
 leds = LED("LED_BLUE")
 leds.on()
-#print("start")
+
+
 def run_script(filename):
     try:
         with open(filename) as f:
@@ -31,8 +30,6 @@ while True:
 
         # Only act when a new line is added
         if line_count > last_line_count:
-            print("New line detected:", final_cmd)
-
             if final_cmd:
                 try:
                     if final_cmd == "start":
@@ -65,7 +62,6 @@ while True:
                         print("Now active.")
 
                     elif final_cmd == "led_off":
-                        led_pin.low()
                         print("LED is now inactive.")
 
                     else:
